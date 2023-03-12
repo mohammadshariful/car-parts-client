@@ -1,0 +1,56 @@
+[
+  {
+    "_id": 1,
+    "name": "Piston",
+    "img": "https://i.ibb.co/KbWBKzB/Piston.jpg",
+    "description": "You must have often seen piston in engine oils advertisements. It's quite common among the general car parts name. An average car comes with four to six pistons in the engine. It moves when the gas passes through the combustion chamber. When the piston moves, the crankshaft also turns to run the tires and keep the car moving. The speed of the engine is dependent on how the piston moves.",
+    "minimumOrderQuantity": 20000,
+    "availableQuantity": 50000,
+    "price": 1000
+  },
+  {
+    "_id": 2,
+    "name": "Air Filter",
+    "img": "https://i.ibb.co/dQ5YR22/Air-Filter.jpg",
+    "description": "The purpose of an air filter is to prevent contaminants like insects, particles, dust, sand or debris from entering the engine. It keeps the mixture of air and fuel quite clean to support the high performance of the vehicle. Made up of cotton, synthetic paper or foam, air filters are pretty essential for clean fuel.",
+    "minimumOrderQuantity": 15000,
+    "availableQuantity": 60000,
+    "price": 600
+  },
+  {
+    "_id": 3,
+    "name": "Steering Wheel",
+    "img": "https://i.ibb.co/6RVHjhm/Steering-Wheel.jpg",
+    "description": "The circular object that drivers move in all different directions while driving is referred to as the steering wheel. It is another car parts with names that are quite popular among drivers. Steering wheels are used to control the direction of the car. You drive in different directions or take turns using the part.",
+    "minimumOrderQuantity": 10000,
+    "availableQuantity": 30000,
+    "price": 230
+  },
+  {
+    "_id": 4,
+    "name": "Windscreen",
+    "img": "https://i.ibb.co/p4fcpLg/Windscreen.jpg",
+    "description": "The windscreen is the big glass present in the front of the car. It allows you to see the road clearly while also protecting you from foreign contaminants. It's the big window you put your eyes on whenever you are driving.",
+    "minimumOrderQuantity": 25000,
+    "availableQuantity": 60000,
+    "price": 200
+  },
+  {
+    "_id": 5,
+    "name": "Engine Fan",
+    "img": "https://i.ibb.co/K9QBRFd/Engine-Fan.jpg",
+    "description": "Engine fans are popular for their reliability. The main purpose of using an engine fan is that they cool down the radiator and condenser. It helps the engine and the AC system to prevent overheating and maintain a proper operating temperature.You have to regularly clean and check the fan to remove contaminants that might block the fan from moving. Clean off any kind of dust and debris from the metal fins of the radiator and condenser to prevent overheating and blocking.",
+    "minimumOrderQuantity": 40000,
+    "availableQuantity": 90000,
+    "price": 634
+  },
+  {
+    "_id": 6,
+    "name": "Oil Filter",
+    "img": "https://i.ibb.co/4R1VJQv/Oil-Filter.jpg",
+    "description": "Oil filter is also a contaminant remover from the fuel for high performance of the car. The filter helps to separate impurities, dirt and debris from the fresh oil to keep the engine running smoothly.",
+    "minimumOrderQuantity": 45000,
+    "availableQuantity": 75000,
+    "price": 30
+  }
+]
