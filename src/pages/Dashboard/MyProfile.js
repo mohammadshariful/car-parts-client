@@ -8,7 +8,7 @@ import UpdateProfile from "./UpdateProfile";
 const MyProfile = () => {
   const [user] = useAuthState(auth);
   const [update, setUpdate] = useState(false);
-  const url = `https://proper-parts-server.vercel.app/updateInfo/${user?.email}`;
+  const url = `http://localhost:5000/updateInfo/${user?.email}`;
   const {
     data: profile,
     isLoading,

@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const ProductModal = ({ product, refetch, setProduct }) => {
   const deleteProduct = (id) => {
-    fetch(`https://proper-parts-server.vercel.app/tools/${id}`, {
+    fetch(`http://localhost:5000/tools/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

@@ -20,7 +20,7 @@ const Reviews = () => {
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
 
-  const url = `https://proper-parts-server.vercel.app/reviews`;
+  const url = `http://localhost:5000/reviews`;
   const { data: reviews, isLoading } = useQuery("reviews", () =>
     fetch(url).then((res) => res.json())
   );

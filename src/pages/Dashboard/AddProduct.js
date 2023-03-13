@@ -37,7 +37,7 @@ const AddProduct = () => {
           };
 
           //send to product database
-          fetch("https://proper-parts-server.vercel.app/tools", {
+          fetch("http://localhost:5000/tools", {
             method: "POST",
             headers: {
               "content-type": "application/json",

@@ -12,7 +12,7 @@ const CheckoutForm = ({ order }) => {
   const { _id, price, email, userName } = order;
 
   useEffect(() => {
-    const url = "https://proper-parts-server.vercel.app/create-payment-intent";
+    const url = "http://localhost:5000/create-payment-intent";
     fetch(url, {
       method: "POST",
       headers: {
@@ -74,7 +74,7 @@ const CheckoutForm = ({ order }) => {
         order: _id,
         transactionId: paymentIntent.id,
       };
-      fetch(`https://proper-parts-server.vercel.app/myPurchase/${_id}`, {
+      fetch(`http://localhost:5000/myPurchase/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

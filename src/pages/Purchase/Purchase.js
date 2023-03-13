@@ -16,7 +16,7 @@ const Purchase = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const url = `https://proper-parts-server.vercel.app/tools/${id}`;
+  const url = `http://localhost:5000/tools/${id}`;
   const { data: tool, isLoading } = useQuery(["tool", id], () =>
     fetch(url, {
       method: "GET",
@@ -59,7 +59,7 @@ const Purchase = () => {
         address: data.address,
         phone: data.phone,
       };
-      fetch("https://proper-parts-server.vercel.app/purchase", {
+      fetch("http://localhost:5000/purchase", {
         method: "POST",
         headers: {
           "content-type": "application/json",

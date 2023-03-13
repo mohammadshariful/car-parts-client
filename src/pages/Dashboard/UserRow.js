@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 const UserRow = ({ user, index, refetch }) => {
   const { email, role } = user;
   const makeAdmin = () => {
-    const url = `https://proper-parts-server.vercel.app/user/admin/${email}`;
+    const url = `http://localhost:5000/user/admin/${email}`;
     fetch(url, {
       method: "PUT",
       headers: {

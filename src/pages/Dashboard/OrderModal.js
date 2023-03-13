@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const OrderModal = ({ orderDelete, refetch, setOrderDelete }) => {
   const deleteOrder = (id) => {
     console.log(id);
-    fetch(`https://proper-parts-server.vercel.app/manageOrder/${id}`, {
+    fetch(`http://localhost:5000/manageOrder/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

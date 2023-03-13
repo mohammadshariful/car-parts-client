@@ -19,7 +19,7 @@ const AddReview = () => {
       userName: user?.displayName,
       photoUrl: user?.photoURL,
     };
-    fetch("https://proper-parts-server.vercel.app/reviews", {
+    fetch("http://localhost:5000/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

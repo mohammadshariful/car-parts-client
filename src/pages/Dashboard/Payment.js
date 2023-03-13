@@ -12,7 +12,7 @@ const stripePromise = loadStripe(
 
 const Payment = () => {
   const { id } = useParams();
-  const url = `https://proper-parts-server.vercel.app/myPurchase/${id}`;
+  const url = `http://localhost:5000/myPurchase/${id}`;
   const { data: order, isLoading } = useQuery(["order", id], () =>
     fetch(url, {
       method: "GET",

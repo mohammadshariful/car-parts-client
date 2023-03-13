@@ -10,7 +10,7 @@ const ManageOrders = () => {
     isLoading,
     refetch,
   } = useQuery("users", () =>
-    fetch("https://proper-parts-server.vercel.app/manageOrder", {
+    fetch("http://localhost:5000/manageOrder", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

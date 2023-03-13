@@ -17,7 +17,7 @@ const UpdateProfile = ({ refetch, setUpdate }) => {
     };
 
     // update user info
-    const url = `https://proper-parts-server.vercel.app/update/${user?.email}`;
+    const url = `http://localhost:5000/update/${user?.email}`;
     fetch(url, {
       method: "PUT",
       headers: {

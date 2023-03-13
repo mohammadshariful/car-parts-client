@@ -6,7 +6,7 @@ const useAdmin = (user) => {
   useEffect(() => {
     const email = user?.email;
     if (email) {
-      const url = `https://proper-parts-server.vercel.app/admin/${email}`;
+      const url = `http://localhost:5000/admin/${email}`;
       fetch(url, {
         method: "GET",
         headers: {

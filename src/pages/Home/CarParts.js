@@ -12,7 +12,7 @@ const CarParts = () => {
 
 
   useEffect(() => {
-    const url = `https://proper-parts-server.vercel.app/tools`;
+    const url = `http://localhost:5000/tools`;
     setIsLoading((prevState) => !prevState);
     fetch(url)
       .then((res) => res.json())
@@ -27,7 +27,7 @@ const CarParts = () => {
   }, [])
 
   // data fecth from vercel.app
-  // const url = `https://proper-parts-server.vercel.app/tools`;
+  // const url = `http://localhost:5000/tools`;
   // const { data: carsParts, isLoading } = useQuery("parts", () =>
   //   fetch(url).then((res) => res.json())
   // );

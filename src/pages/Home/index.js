@@ -8,17 +8,17 @@ import CarParts from "./CarParts";
 import "./Home.css";
 import Reviews from "./Reviews";
 const Home = () => {
-  return (
-    <div className="w-[90%] mx-auto my-10">
-      <TitleChange title="Home" />
-      <Banner />
-      <CarParts />
-      <BusinessSummary />
-      <BlogArea />
-      <Reviews />
-      <Brands />
-    </div>
-  );
+    return (
+        <div className="w-[90%] mx-auto my-10">
+            <TitleChange title="Home" />
+            <Banner />
+            <CarParts />
+            <BusinessSummary />
+            <BlogArea />
+            <Reviews />
+            <Brands />
+        </div>
+    );
 };
 
 export default Home;

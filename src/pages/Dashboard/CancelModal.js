@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const CancelModal = ({ cancel, refetch, setCancel }) => {
   const cancelOrder = (id) => {
-    fetch(`https://proper-parts-server.vercel.app/myPurchase/${id}`, {
+    fetch(`http://localhost:5000/myPurchase/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
