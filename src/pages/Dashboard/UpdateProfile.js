@@ -1,8 +1,8 @@
-import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import auth from "../../Firebase/Firebase.init";
+
 const UpdateProfile = ({ refetch, setUpdate }) => {
   const { register, handleSubmit, reset } = useForm();
   const [user] = useAuthState(auth);
@@ -16,8 +16,7 @@ const UpdateProfile = ({ refetch, setUpdate }) => {
       email: user?.email,
     };
 
-    // update user info
-    const url = `http://localhost:5000/update/${user?.email}`;
+    const url = `https://proper-parts-server-74zj.onrender.com/api/v1/profile/${user?.email}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -27,8 +26,8 @@ const UpdateProfile = ({ refetch, setUpdate }) => {
       body: JSON.stringify(updateInfo),
     })
       .then((res) => res.json())
-      .then((result) => {
-        if (result.modifiedCount) {
+      .then(({ data }) => {
+        if (data.modifiedCount) {
           toast.success("Profile update sccess");
           refetch();
           setUpdate(false);
@@ -36,6 +35,8 @@ const UpdateProfile = ({ refetch, setUpdate }) => {
         }
       });
   };
+
+
   return (
     <div>
       <input type="checkbox" id="updateProfileModal" className="modal-toggle" />

@@ -1,6 +1,5 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
@@ -12,8 +11,8 @@ const stripePromise = loadStripe(
 
 const Payment = () => {
   const { id } = useParams();
-  const url = `http://localhost:5000/myPurchase/${id}`;
-  const { data: order, isLoading } = useQuery(["order", id], () =>
+  const url = `https://proper-parts-server-74zj.onrender.com/api/v1/myPurchase/${id}`;
+  const { data: { data } = {}, isLoading } = useQuery(["order", id], () =>
     fetch(url, {
       method: "GET",
       headers: {
@@ -29,18 +28,18 @@ const Payment = () => {
       <div className="card w-full lg:max-w-lg bg-base-100 shadow-xl">
         <div className="card-body">
           <h2>
-            Hello,<span className="text-success">{order?.userName}</span>
+            Hello,<span className="text-success">{data?.userName}</span>
           </h2>
           <div className="flex justify-between gap-3">
             <div className="avatar">
               <div className="w-16 rounded">
-                <img src={order?.img} alt={order?.purchaseName} />
+                <img src={data?.img} alt={data?.purchaseName} />
               </div>
             </div>
             <div>
-              <h3>Please pay for :- {order?.purchaseName} </h3>
-              <p>Total Quantity : {order?.quantity}</p>
-              <p className="text-primary font-bold">Price:$ {order?.price}</p>
+              <h3>Please pay for :- {data?.purchaseName} </h3>
+              <p>Total Quantity : {data?.quantity}</p>
+              <p className="text-primary font-bold">Price:$ {data?.price}</p>
             </div>
           </div>
         </div>
@@ -48,7 +47,7 @@ const Payment = () => {
       <div className="card w-full lg:max-w-lg bg-base-100 shadow-xl">
         <div className="card-body">
           <Elements stripe={stripePromise}>
-            <CheckoutForm order={order} />
+            <CheckoutForm order={data} />
           </Elements>
         </div>
       </div>

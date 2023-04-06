@@ -3,14 +3,14 @@ import { toast } from "react-toastify";
 
 const CancelModal = ({ cancel, refetch, setCancel }) => {
   const cancelOrder = (id) => {
-    fetch(`http://localhost:5000/myPurchase/${id}`, {
+    fetch(`https://proper-parts-server-74zj.onrender.com/api/v1/myPurchase/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(({ data }) => {
         if (data.deletedCount) {
           toast.success(`${cancel?.purchaseName} - order is deleted.`);
           setCancel(null);

@@ -6,31 +6,31 @@ import useAdmin from "../../hooks/useAdmin";
 import Loading from "../Shared/Loading/Loading";
 import CancelModal from "./CancelModal";
 import OrderRow from "./OrderRow";
+
 const MyOrder = () => {
   const [user] = useAuthState(auth);
   const [cancel, setCancel] = useState(null);
   const [admin] = useAdmin(user);
-  const url = `http://localhost:5000/purchase/${user?.email}`;
-  const {
-    data: orders,
-    isLoading,
-    refetch,
-  } = useQuery("myOrder", () =>
-    fetch(url, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => res.json())
+
+  const url = `https://proper-parts-server-74zj.onrender.com/api/v1/purchase/${user?.email}`;
+  const { data: { data } = {}, isLoading, refetch } = useQuery("myOrder", () => fetch(url, {
+    method: "GET",
+    headers: {
+      authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  }).then((res) => res.json())
   );
+
+
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <>
       {!admin && (
         <div>
-          <h2 className="text-center text-xl">My Order({orders.length})</h2>
+          <h2 className="text-center text-xl">My Order({data.length})</h2>
           <div className="overflow-x-auto mt-3">
             <table className="table w-full">
               <thead>
@@ -45,7 +45,7 @@ const MyOrder = () => {
                 </tr>
               </thead>
               <tbody>
-                {orders.map((order, index) => (
+                {data.map((order, index) => (
                   <OrderRow
                     key={order?._id}
                     index={index}

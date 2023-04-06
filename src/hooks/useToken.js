@@ -6,7 +6,7 @@ const useToken = (user) => {
     const email = user?.user?.email;
     const currentUser = { email: email };
     if (email) {
-      const url = `http://localhost:5000/user/${email}`;
+      const url = `https://proper-parts-server-74zj.onrender.com/api/v1/user/${email}`;
       fetch(url, {
         method: "PUT",
         headers: {
@@ -17,7 +17,7 @@ const useToken = (user) => {
         .then((res) => {
           return res.json();
         })
-        .then((data) => {
+        .then(({ data }) => {
           const accessToken = data.token;
           localStorage.setItem("accessToken", accessToken);
           setToken(accessToken);

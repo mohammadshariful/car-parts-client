@@ -3,14 +3,12 @@ import { useQuery } from "react-query";
 import Loading from "../Shared/Loading/Loading";
 import ManageSingleProducts from "./ManageSingleProducts";
 import ProductModal from "./ProductModal";
+
 const ManageProducts = () => {
   const [product, setProduct] = useState(null);
-  const {
-    data: products,
-    isLoading,
-    refetch,
-  } = useQuery("users", () =>
-    fetch("http://localhost:5000/tools", {
+
+  const { data: { data: products } = {}, isLoading, refetch, } = useQuery("products", () =>
+    fetch("https://proper-parts-server-74zj.onrender.com/api/v1/tools", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -18,9 +16,11 @@ const ManageProducts = () => {
     }).then((res) => res.json())
   );
 
+
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <div>
       <h2 className="text-center text-xl">

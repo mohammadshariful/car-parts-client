@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { Autoplay, Keyboard, Navigation, Scrollbar } from "swiper";
 // Import Swiper styles
@@ -14,17 +14,15 @@ import auth from "../../Firebase/Firebase.init";
 import useAdmin from "../../hooks/useAdmin";
 import Loading from "../Shared/Loading/Loading";
 import UserReview from "./UserReview";
+import { useFetchData } from "../../hooks";
 
 const Reviews = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const [admin] = useAdmin(user);
+  const { dataInfo } = useFetchData('https://proper-parts-server-74zj.onrender.com/api/v1/reviews');
 
-  const url = `http://localhost:5000/reviews`;
-  const { data: reviews, isLoading } = useQuery("reviews", () =>
-    fetch(url).then((res) => res.json())
-  );
-  if (isLoading) {
+  if (dataInfo?.loading) {
     return <Loading />;
   }
 
@@ -56,7 +54,7 @@ const Reviews = () => {
         modules={[Keyboard, Scrollbar, Navigation, Autoplay]}
         className="mySwiper"
       >
-        {reviews.map((review) => (
+        {dataInfo?.data.map((review) => (
           <SwiperSlide key={review._id}>
             <UserReview review={review} />
           </SwiperSlide>
@@ -65,9 +63,9 @@ const Reviews = () => {
 
       <div className="text-center mt-4">
         <button
-          disabled={admin && true}
+          disabled={admin}
           onClick={() => navigate("/dashboard/review")}
-          className="btn btn-primary text-white capitalize font-normal"
+          className={`btn btn-primary text-white capitalize font-normal ${admin ? 'cursor-not-allowed' : ''}`}
         >
           Write a Review
         </button>

@@ -2,18 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 const AddProduct = () => {
-  const {
-    register,
-    formState: { errors },
-    reset,
-    handleSubmit,
-  } = useForm();
+  const { register, formState: { errors }, reset, handleSubmit } = useForm();
   const imageStorageKey = "9cfe60cf67bc6290c60a930379ddadde";
 
   const onSubmit = async (data) => {
-    console.log(data);
-    const img = data.img[0];
 
+    const img = data.img[0];
     const formData = new FormData();
     formData.append("image", img);
 
@@ -37,7 +31,7 @@ const AddProduct = () => {
           };
 
           //send to product database
-          fetch("http://localhost:5000/tools", {
+          fetch("https://proper-parts-server-74zj.onrender.com/api/v1/tools", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -46,8 +40,8 @@ const AddProduct = () => {
             body: JSON.stringify(product),
           })
             .then((res) => res.json())
-            .then((result) => {
-              if (result.insertedId) {
+            .then(({ data }) => {
+              if (data.insertedId) {
                 toast.success("Product added Successfull");
                 reset();
               } else {

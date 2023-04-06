@@ -1,15 +1,11 @@
-import React from "react";
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading/Loading";
 import UserRow from "./UserRow";
 
 const Users = () => {
-  const {
-    data: users,
-    isLoading,
-    refetch,
-  } = useQuery("users", () =>
-    fetch("http://localhost:5000/user", {
+
+  const { data: { data: users = [] } = {}, isLoading, refetch } = useQuery("users", () =>
+    fetch("https://proper-parts-server-74zj.onrender.com/api/v1/user", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

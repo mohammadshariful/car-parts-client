@@ -6,7 +6,7 @@ const useAdmin = (user) => {
   useEffect(() => {
     const email = user?.email;
     if (email) {
-      const url = `http://localhost:5000/admin/${email}`;
+      const url = `https://proper-parts-server-74zj.onrender.com/api/v1/admin/${email}`;
       fetch(url, {
         method: "GET",
         headers: {
@@ -15,7 +15,7 @@ const useAdmin = (user) => {
         },
       })
         .then((res) => res.json())
-        .then((data) => {
+        .then(({ data }) => {
           setAdmin(data.admin);
           setAdminLoading(false);
         });

@@ -12,7 +12,7 @@ const CheckoutForm = ({ order }) => {
   const { _id, price, email, userName } = order;
 
   useEffect(() => {
-    const url = "http://localhost:5000/create-payment-intent";
+    const url = "https://proper-parts-server-74zj.onrender.com/api/v1/create-payment-intent";
     fetch(url, {
       method: "POST",
       headers: {
@@ -22,7 +22,7 @@ const CheckoutForm = ({ order }) => {
       body: JSON.stringify({ price }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(({ data }) => {
         if (data.clientSecret) {
           setClientSecret(data.clientSecret);
         }
@@ -41,10 +41,7 @@ const CheckoutForm = ({ order }) => {
     }
 
     // Use your card Element with other Stripe.js APIs
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card,
-    });
+    const { error, paymentMethod } = await stripe.createPaymentMethod({ type: "card", card });
 
     setCardError(error ? error.message : "");
     setSuccess("");
@@ -70,11 +67,9 @@ const CheckoutForm = ({ order }) => {
       setTransactionId(paymentIntent.id);
       setSuccess("Congrats ! Your payment is complated");
       // store payment on database
-      const payment = {
-        order: _id,
-        transactionId: paymentIntent.id,
-      };
-      fetch(`http://localhost:5000/myPurchase/${_id}`, {
+      const payment = { order: _id, transactionId: paymentIntent.id };
+
+      fetch(`https://proper-parts-server-74zj.onrender.com/api/v1/myPurchase/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

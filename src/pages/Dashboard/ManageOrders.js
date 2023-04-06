@@ -3,14 +3,12 @@ import { useQuery } from "react-query";
 import Loading from "../Shared/Loading/Loading";
 import ManageSingleOrder from "./ManageSingleOrder";
 import OrderModal from "./OrderModal";
+
 const ManageOrders = () => {
   const [orderDelete, setOrderDelete] = useState(null);
-  const {
-    data: orders,
-    isLoading,
-    refetch,
-  } = useQuery("users", () =>
-    fetch("http://localhost:5000/manageOrder", {
+
+  const { data: { data: orders = [] } = {}, isLoading, refetch } = useQuery("orders", () =>
+    fetch("https://proper-parts-server-74zj.onrender.com/api/v1/manageOrder", {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

@@ -17,6 +17,7 @@ const SocialLogin = () => {
       navigate(from, { replace: true });
     }
   }, [token, navigate, from]);
+
   if (loading) {
     return <Loading />;
   }

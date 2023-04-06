@@ -19,7 +19,7 @@ const AddReview = () => {
       userName: user?.displayName,
       photoUrl: user?.photoURL,
     };
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://proper-parts-server-74zj.onrender.com/api/v1/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,8 +28,8 @@ const AddReview = () => {
       body: JSON.stringify(review),
     })
       .then((res) => res.json())
-      .then((result) => {
-        if (result.insertedId) {
+      .then(({ data }) => {
+        if (data?.insertedId) {
           toast.success(
             `Review Add Successful
               `,

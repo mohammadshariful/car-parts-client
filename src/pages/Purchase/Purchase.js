@@ -10,14 +10,10 @@ import TitleChange from "../Shared/TitleChange/TitleChange";
 const Purchase = () => {
   const { id } = useParams();
   const [user] = useAuthState(auth);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
-  const url = `http://localhost:5000/tools/${id}`;
-  const { data: tool, isLoading } = useQuery(["tool", id], () =>
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+  const url = `https://proper-parts-server-74zj.onrender.com/api/v1/tools/${id}`;
+  const { data: { data } = {}, isLoading } = useQuery(["tool", id], () =>
     fetch(url, {
       method: "GET",
       headers: {
@@ -26,17 +22,13 @@ const Purchase = () => {
       },
     }).then((res) => res.json())
   );
+
+
+
   if (isLoading) {
     return <Loading />;
   }
-  const {
-    price,
-    name,
-    minimumOrderQuantity,
-    availableQuantity,
-    img,
-    description,
-  } = tool;
+  const { price, name, minimumOrderQuantity, availableQuantity, img, description } = data;
 
   const onSubmit = (data) => {
     const quantity = parseInt(data.quantity);
@@ -49,17 +41,9 @@ const Purchase = () => {
       );
       return;
     } else {
-      const order = {
-        purchaseName: name,
-        quantity: quantity,
-        price: price,
-        img: img,
-        userName: user?.displayName,
-        email: user?.email,
-        address: data.address,
-        phone: data.phone,
-      };
-      fetch("http://localhost:5000/purchase", {
+      const order = { purchaseName: name, quantity: quantity, price: price, img: img, userName: user?.displayName, email: user?.email, address: data.address, phone: data.phone };
+
+      fetch("https://proper-parts-server-74zj.onrender.com/api/v1/purchase", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -68,11 +52,12 @@ const Purchase = () => {
         body: JSON.stringify(order),
       })
         .then((res) => res.json())
-        .then((result) => {
-          if (result.insertedId) {
+        .then(({ data }) => {
+
+          if (data.insertedId) {
             toast.success(
               `Thanks For Purchase.
-              Your Purchase Id ${result.insertedId}
+              Your Purchase Id ${data.insertedId}
               `,
               {
                 position: toast.POSITION.TOP_CENTER,

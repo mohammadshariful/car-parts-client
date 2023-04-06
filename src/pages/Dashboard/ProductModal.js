@@ -1,16 +1,15 @@
-import React from "react";
 import { toast } from "react-toastify";
 
 const ProductModal = ({ product, refetch, setProduct }) => {
   const deleteProduct = (id) => {
-    fetch(`http://localhost:5000/tools/${id}`, {
+    fetch(`https://proper-parts-server-74zj.onrender.com/api/v1/tools/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(({ data }) => {
         if (data.deletedCount) {
           toast.success(`${product?.name} - product is deleted.`);
           setProduct(null);

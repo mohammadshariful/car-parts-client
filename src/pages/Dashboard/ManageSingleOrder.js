@@ -1,9 +1,9 @@
-import React from "react";
 import { toast } from "react-toastify";
 
 const ManageSingleOrder = ({ index, order, refetch, setOrderDelete }) => {
+
   const handleStatus = (id) => {
-    const url = `http://localhost:5000/manageOrder/${id}`;
+    const url = `https://proper-parts-server-74zj.onrender.com/api/v1/manageOrder/${id}`;
     fetch(url, {
       method: "PATCH",
       headers: {
@@ -12,8 +12,8 @@ const ManageSingleOrder = ({ index, order, refetch, setOrderDelete }) => {
       },
     })
       .then((res) => res.json())
-      .then((result) => {
-        if (result.upsertedCount) {
+      .then(({ data }) => {
+        if (data.acknowledged) {
           toast.success("Order Shippment");
           refetch();
         }

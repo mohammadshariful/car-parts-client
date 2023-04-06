@@ -90,7 +90,7 @@ const Navbar = () => {
             {menu}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <Link to="/" className="flex items-center gap-1">
           <img className="w-8" src={Logo} alt="logo" />
           <span className="text-primary">Proper Parts</span>
         </Link>
