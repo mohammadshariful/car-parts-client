@@ -1,12 +1,4 @@
-import React from "react";
-import {
-  FaEnvelope,
-  FaFacebook,
-  FaGithub,
-  FaLinkedin,
-  FaPhone,
-  FaSearchLocation,
-} from "react-icons/fa";
+import { FaEnvelope, FaFacebook, FaGithub, FaLinkedin, FaPhone, FaSearchLocation } from "react-icons/fa";
 import contact from "../../assets/images/contactImg.jpg";
 import shariful from "../../assets/images/shariful.jpg";
 const Portfolio = () => {
